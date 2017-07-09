@@ -5,8 +5,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
+    main_admin = db.Column(db.Boolean, default=False)
     admin = db.Column(db.Boolean, default=False)
-    avatar = db.Column(db.String(200))
     active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime)
 

@@ -35,3 +35,8 @@ def get_google_authorization_url():
 
     flask.session['oauth_state'] = state
     return auth_url
+
+
+def get_cj_api_auth():
+    auth = [Auth.API_CLIENT_ID, Auth.API_CLIENT_SECRET]
+    return auth

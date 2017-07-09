@@ -1,7 +1,8 @@
-# flask-template
-Basic Flask App To Start With
+# Cratejoy Super Admin
 
-## Set Up
+A web interface for using the Merchant API to freely change things as necessary.
+
+## Dev Setup
 
 ### Install requirements
 
@@ -29,3 +30,7 @@ In the root directory, make a file called config.py using example_config.py as a
 
 ## Run the app
 `python run.py`
+
+## User Setup
+
+![alt text](http://www.gtigazette.com/wp-content/uploads/2014/02/determined-fumanchu-computer-stare-l.png "working on it")

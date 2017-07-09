@@ -1,2 +1,3 @@
 import index_view
 import login_view
+import shipments_views

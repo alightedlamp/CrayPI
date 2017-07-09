@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h3>Adjust Dates</h3>
+        <form action="" method="post" name="adjust-dates">
+            <table>
+            {% for field in form %}
+                {% if field.type != "SubmitField" %}
+                <thead>
+                    <th>{{ field.label }}</th>
+                </thead>
+                {% endif %}
+                <tbody>
+                    <tr>
+                        <td>{{ field }}</td>
+                    </tr>
+                </tobdy>
+            {% endfor %}
+            </table>
+        </form>
+    </div>
+
+{% endblock %}
