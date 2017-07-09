@@ -22,6 +22,7 @@ def move_shipments():
                                  form=form,
                                  user=user)
 
+
 @app.route('/shipments/tracking')
 def add_tracking():
     user = flask.g.user
