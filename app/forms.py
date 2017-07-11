@@ -10,7 +10,7 @@ class LoginForm(Form):
 
 
 class GetShipmentsForm(Form):
-    subscription_id = StringField(u'Subscription ID', validators=[DataRequired()])
+    search_term = StringField(u'Subscription ID', validators=[DataRequired()])
 
 
 class MoveShipmentForm(Form):

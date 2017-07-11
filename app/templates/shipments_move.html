@@ -2,21 +2,18 @@
 
 {% block content %}
 
-    <div class="container">
+    <div>
         <h3>Adjust Dates</h3>
         <form action="" method="post" name="adjust-dates">
             <table>
-            {% for field in form %}
+            {{ form.csrf_token }}
+            {% for field in form if field.widget.input_type != 'hidden' %}
                 {% if field.type != "SubmitField" %}
-                <thead>
-                    <th>{{ field.label }}</th>
-                </thead>
+                <th>{{ field.label }}</th>
                 {% endif %}
-                <tbody>
-                    <tr>
-                        <td>{{ field }}</td>
-                    </tr>
-                </tobdy>
+                <tr>
+                    <td>{{ field }}</td>
+                </tr>
             {% endfor %}
             </table>
         </form>
