@@ -5,18 +5,28 @@
     <div>
         <h3>Adjust Dates</h3>
         <form action="" method="post" name="adjust-dates">
-            <table>
             {{ form.csrf_token }}
-            {% for field in form if field.widget.input_type != 'hidden' %}
-                {% if field.type != "SubmitField" %}
-                <th>{{ field.label }}</th>
-                {% endif %}
-                <tr>
-                    <td>{{ field }}</td>
-                </tr>
-            {% endfor %}
-            </table>
+
+            <div class="shipments">
+                {{ form.shipment_id }}
+            </div>
+            <div class="option">
+                {{ options[0] }} Move to {{ form.shipment_date }}<br />
+                {{ options[1] }} Move by {{ form.shipments_month_change }} months
+            </div>
+            {{ form.submit }}
         </form>
     </div>
 
+{% endblock %}
+
+{% block js %}
+    <script>
+        /*
+            if radio1 selected
+                deselect radio2
+            else if radio2 selected
+                deselect radio1
+        */
+    </script>
 {% endblock %}

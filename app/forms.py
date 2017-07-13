@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import StringField, BooleanField, TextAreaField, SubmitField
+from wtforms import StringField, BooleanField, TextAreaField, SubmitField, SelectField, RadioField
 from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired
 
@@ -14,9 +14,14 @@ class GetShipmentsForm(Form):
 
 
 class MoveShipmentForm(Form):
-    shipment_id = StringField(u'Shipment ID', validators=[DataRequired()])
-    shipment_date = DateField(u'Shipment Date', validators=[DataRequired()])
-    submit = SubmitField()
+    shipment_id = TextAreaField(u'Shipment ID(s)', validators=[DataRequired()], id='shipment-id')
+
+    options = RadioField(u'Type', choices=[('by-date', 'By date'), ('by-month', 'By month')], coerce=unicode)
+
+    shipment_date = DateField(u'Shipment Date', id='shipment-date')
+    shipments_month_change = SelectField(u'Month Adjustment', coerce=int, id='shipment-month-choice')
+
+    submit = SubmitField(id='submit-btn')
 
 
 class AddTrackingForm(Form):

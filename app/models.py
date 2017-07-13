@@ -24,3 +24,9 @@ class User(db.Model):
 
     def get_id(self):
         return unicode(self.id)
+
+
+class Log(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    log_type = db.Column(db.String, nullable=False)
+    # admin_id = backref to user who did the action

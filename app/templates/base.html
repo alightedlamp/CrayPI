@@ -5,6 +5,7 @@
 		{% else %}
 			<title></title>
 		{% endif %}
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Comfortaa|Quicksand" rel="stylesheet">
 		<link href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="/static/css/base.css" rel="stylesheet">
 
@@ -43,14 +44,14 @@
 		<section class="col-lg-12 col-sm-12">
 			<nav class="container toolbar">
 				<ul>
-					<li class="toolbar-section"><b><a href="{{ url_for('shipments') }}">Shipments</a></b>
+					<li class="toolbar-section"><h3 class="toolbar-heading">Shipments</h3>
 						<ul>
 							<li><a href="{{ url_for('move_shipments') }}">Adjust Dates</a></li>
-							<li><a href="{{ url_for('add_tracking') }}">Add Tracking</a></li>
+							<li>Add Tracking</a></li>
 							<li>Change Product</li>
 						</ul>
 					</li>
-					<li class="toolbar-section"><b>Subscriptions</b>
+					<li class="toolbar-section"><h3 class="toolbar-heading">Subscriptions</h3>
 						<ul>
 							<li>Adjust Renewal</li>
 							<li>Reactivate</li>
@@ -59,12 +60,12 @@
 							<li>Add Coupons</li>
 						</ul>
 					</li>
-					<li class="toolbar-section"><b>Products</b>
+					<li class="toolbar-section"><h3 class="toolbar-heading">Products</h3>
 						<ul>
 							<li>Change SKU</li>
 						</ul>
 					</li>
-					<li class="toolbar-section"><b>Utilities</b>
+					<li class="toolbar-section"><h3 class="toolbar-heading">Utilities</h3>
 						<ul>
 							<li>Add Redirect</li>
 							<li>Add Admin User</li>
@@ -76,5 +77,6 @@
 				{% block content %}{% endblock %}
 			</div>
 		</section>
+	{% block js %}{% endblock %}
 	</body>
 </html>

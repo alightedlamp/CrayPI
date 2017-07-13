@@ -10,7 +10,7 @@ import handlers.shipments_handler
 
 @app.route('/shipments')
 @app.route('/shipments', methods=['GET'])
-def shipments():
+def shipments_page():
     user = flask.g.user
     form = GetShipmentsForm()
     return flask.render_template('shipments.html',
@@ -23,23 +23,26 @@ def shipments():
 def move_shipments():
     user = flask.g.user
     form = MoveShipmentForm()
-
+    form.shipments_month_change.choices = [(i, i) for i in range(-6, 7) if i != 0]
+    options = list(form.options)
     if form.validate_on_submit():
-        shipment_id = form.shipment_id.data
-        date = str(form.shipment_date.data)
-        response = handlers.shipments_handler.adjust_date(shipment_id, date)
+        shipments = form.shipment_id.data
+        if form.options.data == 'by-date':
+            date = form.shipment_date.data
+            response = handlers.shipments_handler.adjust_by_date(shipments, date)
+        elif form.options.data == 'by-month':
+            month = form.shipments_month_change.data
+            response = handlers.shipments_handler.add_by_month(shipments, month)
 
-        if response.status_code == '200':
-            message_success = u'Shipment ' + shipment_id + u' moved to ' + date
-            flash(message_success, 'success')
+        if response:
+            flash('Shipments could not be moved: ' + shipments, 'error')
         else:
-            flash('Shipment could not be moved', 'error')
-
-        return redirect(url_for('shipments'))
-
+            flash('Shipments moved!', 'success')
+        return redirect(url_for('shipments_page'))
     return flask.render_template('shipments_move.html',
                                  title='Shipments - Adjust Dates',
                                  form=form,
+                                 options=options,
                                  user=user)
 
 
