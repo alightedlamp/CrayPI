@@ -2,21 +2,17 @@
 
 {% block content %}
 
-    <div class="container">
+    <div>
         <h3>Add Tracking</h3>
+        <p>Add comma delimited lists of shipment IDs and tracking numbers.</p>
         <form action="" method="post" name="login">
-            <table>
-            {% for field in form %}
-                <thead>
-                    <th>{{ field.label }}</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ field }}</td>
-                    </tr>
-                </tobdy>
-            {% endfor %}
-            </table>
+            <h4>Shipment IDs</h4>
+            {{ form.shipment_ids }}
+            <h4>Tracking Numbers</h4>
+            {{ form.tracking_numbers }}
+            <div>
+                {{ form.submit }}
+            </div>
         </form>
     </div>
 

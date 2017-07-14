@@ -11,8 +11,12 @@
                 {{ form.shipment_id }}
             </div>
             <div class="option">
-                {{ options[0] }} Move to {{ form.shipment_date }}<br />
-                {{ options[1] }} Move by {{ form.shipments_month_change }} months
+                <div class="date-option">
+                    {{ options[0] }} Move to {{ form.shipment_date }}
+                </div>
+                <div class="month-option">
+                    {{ options[1] }} Move by {{ form.shipments_month_change }} months
+                </div>
             </div>
             {{ form.submit }}
         </form>
@@ -20,13 +24,4 @@
 
 {% endblock %}
 
-{% block js %}
-    <script>
-        /*
-            if radio1 selected
-                deselect radio2
-            else if radio2 selected
-                deselect radio1
-        */
-    </script>
-{% endblock %}
+{% block js %}{% endblock %}
