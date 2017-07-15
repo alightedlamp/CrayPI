@@ -5,7 +5,7 @@ from flask.ext.login import login_user, logout_user, current_user, login_require
 from app import app
 from ..forms import ChangeRenewal
 
-import handlers.subscriptions_hander
+import handlers.general_handlers
 
 
 @app.route('/subscriptions/renewal', methods=['GET', 'POST'])
@@ -20,20 +20,17 @@ def change_renewal():
         subscriptions = form.subscription_ids.data
         if form.options.data == 'by-date':
             date = form.renewal_date.data
-            response = handlers.subscriptions_handler.adjust_by_date(subscriptions, date)
+            response = handlers.general_handlers.adjust_dates(subscriptions, date, 'subscriptions')
         elif form.options.data == 'by-month':
             month = form.renewal_month_change.data
-            response = handlers.subscriptions_handler.adjust_by_month(subscriptions, month)
+            response = handlers.general_handlers.adjust_months(subscriptions, month,'subscriptions')
 
-        if response:
-            flash('Renewal dates could not be changed: ' + str(response), 'error')
-        else:
-            flash('Renewals changed!', 'success')
+        flash(response)
 
         return redirect(url_for('change_renewal'))
 
     return flask.render_template('move_renewals.html',
-                                 title='Subscriptionss - Adjust Renewals',
+                                 title='Subscriptions - Adjust Renewals',
                                  form=form,
                                  options=options,
                                  user=user)

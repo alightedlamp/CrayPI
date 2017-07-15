@@ -5,7 +5,7 @@ from flask.ext.login import login_user, logout_user, current_user, login_require
 from app import app
 from ..forms import MoveShipmentForm, AddTrackingForm
 
-import handlers.shipments_handler
+import handlers.general_handlers
 
 
 @app.route('/shipments')
@@ -29,17 +29,14 @@ def move_shipments():
         shipments = form.shipment_id.data
         if form.options.data == 'by-date':
             date = form.shipment_date.data
-            response = handlers.shipments_handler.adjust_by_date(shipments, date)
+            response = handlers.general_handlers.adjust_dates(shipments, date, 'shipments')
         elif form.options.data == 'by-month':
             month = form.shipments_month_change.data
-            response = handlers.shipments_handler.adjust_by_month(shipments, month)
+            response = handlers.general_handlers.adjust_months(shipments, month, 'shipments')
 
-        if response:
-            flash('Shipments could not be moved: ' + str(response), 'error')
-        else:
-            flash('Shipments moved!', 'success')
+        flash(response)
 
-        return redirect(url_for('shipments_page'))
+        return redirect(url_for('move_shipments'))
 
     return flask.render_template('shipments_move.html',
                                  title='Shipments - Adjust Dates',
