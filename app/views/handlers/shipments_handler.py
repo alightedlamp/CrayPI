@@ -11,10 +11,20 @@ auth = (auth[0], auth[1])
 base_url = 'http://api.cratejoy.com/v1/shipments/'
 
 
+def check_response(response):
+    if response > 200:
+        return 'failed'
+
+
+def get_shipments():
+    response = requests.get(base_url)
+    return response
+
+
 def adjust_shipment_date(shipment, date):
     url = base_url + shipment + '/'
     date = str(date)
-    response = requests.put(url, data=json.dumps({\
+    response = requests.put(url, data=json.dumps({
         'adjusted_ordered_at': date
     }), auth=auth)
     return response
@@ -68,11 +78,18 @@ def add_tracking(shipment_ids, tracking_numbers):
             for tracking_number in tracking_numbers:
                 shipment_id = str(shipment_id)
                 url = base_url + shipment_id
-                response = requests.put(url, data=json.dumps({\
-                    'status': 'shipped',\
-                    'shipped_at': date, \
+                response = requests.put(url, data=json.dumps({
+                    'status': 'shipped',
+                    'shipped_at': date,
                     'tracking_number': tracking_number
                     }), auth=auth)
                 if response > 200:
                     failed_shipments.append(shipment_id)
             return failed_shipments
+
+
+def change_product_request(shipment, product):
+    url = base_url + shipment
+    response = requests.put(url, data=json.dumps({
+
+        }), auth=auth)

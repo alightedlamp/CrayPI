@@ -27,7 +27,12 @@ class AddTrackingForm(Form):
     submit = SubmitField(id='submit-btn')
 
 
-class ChangeProductForm(Form):
-    shipment_ids = TextAreaField(u'Shipment IDs', validators=[DataRequired()])
+class ChangeRenewal(Form):
+    subscription_ids = TextAreaField(u'Subscription IDs', validators=[DataRequired()])
+
+    options = RadioField(u'Type', choices=[('by-date', 'By date'), ('by-month', 'By month')], coerce=unicode)
+
+    renewal_date = DateField(u'Renewal Date')
+    renewal_month_change = SelectField(u'Month Adjustment', coerce=int)
 
     submit = SubmitField(id='submit-btn')

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div>
+        <h3>Change Product</h3>
+        <form action="" method="post" name="login">
+            <h4>Shipment IDs</h4>
+            {{ form.shipment_ids }}<br />
+            {{ form.product_list }}
+            <div>
+                {{ form.submit }}
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

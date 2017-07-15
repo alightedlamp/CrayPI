@@ -3,19 +3,19 @@
 {% block content %}
 
     <div>
-        <h3>Adjust Shipment Dates</h3>
+        <h3>Adjust Renewal Dates</h3>
         <form action="" method="post" name="adjust-dates">
             {{ form.csrf_token }}
 
             <div class="ids">
-                {{ form.shipment_id(class='ids') }}
+                {{ form.subscription_ids(class='ids') }}
             </div>
             <div class="option">
                 <div class="date-option">
-                    {{ options[0] }} Move to {{ form.shipment_date }}
+                    {{ options[0] }} Move to {{ form.renewal_date }}
                 </div>
                 <div class="month-option">
-                    {{ options[1] }} Move by {{ form.shipments_month_change }} months
+                    {{ options[1] }} Move by {{ form.renewal_month_change }} months
                 </div>
             </div>
             {{ form.submit }}

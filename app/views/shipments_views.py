@@ -25,21 +25,17 @@ def move_shipments():
     form.shipments_month_change.choices = [(i, i) for i in range(-6, 7) if i != 0]
     options = list(form.options)
 
-    print form.shipment_id.data
-    print form.shipments_month_change.data
-    print form.validate_on_submit() # why you return false when there IS shipment ID data??
-
     if form.is_submitted():
         shipments = form.shipment_id.data
         if form.options.data == 'by-date':
             date = form.shipment_date.data
-            failed = handlers.shipments_handler.adjust_by_date(shipments, date)
+            response = handlers.shipments_handler.adjust_by_date(shipments, date)
         elif form.options.data == 'by-month':
             month = form.shipments_month_change.data
-            failed = handlers.shipments_handler.adjust_by_month(shipments, month)
+            response = handlers.shipments_handler.adjust_by_month(shipments, month)
 
-        if failed:
-            flash('Shipments could not be moved: ' + str(failed), 'error')
+        if response:
+            flash('Shipments could not be moved: ' + str(response), 'error')
         else:
             flash('Shipments moved!', 'success')
 
@@ -72,8 +68,3 @@ def add_tracking():
                                  form=form,
                                  user=user)
 
-
-@app.route('/shipments/change-product', methods=['GET', 'POST'])
-def change_product():
-    user = flask.g.user
-    form = ChangeProductForm()
