@@ -56,8 +56,8 @@ def adjust_months(ids, months, endpoint):
         if response.status_code > 200:
             failures.append(_id)
         elif response.status_code == 200:
-            response_dict = json.loads(response.content)
-            date = response_dict[date_key]
+            response = json.loads(response.content)
+            date = response[date_key]
             date = date.split('T')[0]
             date = datetime.datetime.strptime(date, '%Y-%m-%d') + relativedelta(months=months)
             date = str(date)
