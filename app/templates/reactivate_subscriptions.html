@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div>
+        <h3>Reactivate Subscriptions</h3>
+        <form action="" method="post" name="adjust-dates">
+            {{ form.csrf_token }}
+
+            <div class="ids">
+                <h4>Subscription IDs</h4>
+                {{ form.subscription_ids(class='ids') }}
+            </div>
+            {{ form.submit }}
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block js %}{% endblock %}

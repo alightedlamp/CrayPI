@@ -53,9 +53,9 @@
 					<li class="toolbar-section"><h3 class="toolbar-heading">Subscriptions</h3>
 						<ul>
                             <li><a href="{{ url_for('change_renewal') }}">Adjust Renewal</a></li>
-                            <li>Adjust Autorenew</li>
-                            <li>Adjust Gift Info</li>
-                            <li>Reactivate</li>
+                            <!--<li>Adjust Autorenew</li>-->
+                            <li><a href="{{ url_for('adjust_gift_info') }}">Adjust Gift Info</a></li>
+                            <li><a href="{{ url_for('reactivate_subscriptions') }}">Reactivate</a></li>
 							<li>Create Order</li>
 							<li>Add Coupons</li>
 						</ul>

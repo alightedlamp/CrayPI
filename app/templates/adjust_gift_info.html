@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div>
+        <h3>Adjust Gift Info</h3>
+        <form action="" method="post" name="adjust-dates">
+            {{ form.csrf_token }}
+
+            <div>
+                <h4>Order ID:</h4>
+                {{ form.order_id(class='ids') }}
+            </div>
+            <div class="options">
+                <h4>Gift status:</h4>
+                {{ form.gift_status }}<br />
+                <h4>Gift message:</h4>
+                {{ form.gift_message }}
+            </div>
+            {{ form.submit }}
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block js %}{% endblock %}

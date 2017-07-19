@@ -36,3 +36,18 @@ class ChangeRenewal(Form):
     renewal_month_change = SelectField(u'Month Adjustment', coerce=int)
 
     submit = SubmitField(id='submit-btn')
+
+
+class ReactivateSubscription(Form):
+    subscription_ids = TextAreaField(u'Subscription IDs', validators=[DataRequired()])
+
+    submit = SubmitField(id='submit-btn')
+
+
+class AdjustGiftInfo(Form):
+    order_id = StringField(u'Order ID', validators=[DataRequired()])
+
+    gift_status = SelectField(u'Gift Status', validators=[DataRequired()], coerce=bool)
+    gift_message = TextAreaField(u'Gift Messages')
+
+    submit = SubmitField(id='submit-btn')
